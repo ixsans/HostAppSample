@@ -1,16 +1,15 @@
 package com.ixsans.hostapp
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import com.ixsans.modulebridge.Bridgeapp
 import com.ixsans.modulebridge.FlutterBridgeActivity
 import com.ixsans.modulebridge.ModuleState
-import io.flutter.embedding.android.FlutterActivityLaunchConfigs
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,17 +27,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.button).setOnClickListener {
             overridePendingTransition(0, 0);
-            startActivity(
-                FlutterBridgeActivity
-                    .withNewEngine()
-                    //.withCachedEngine(FLUTTER_ENGINE_ID)
-                    .backgroundMode(FlutterActivityLaunchConfigs.BackgroundMode.transparent)
-                    .build(this)
-                    .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            )
+           Bridgeapp.launch(this)
         }
 
-        FlutterBridgeActivity.listenState(object: FlutterBridgeActivity.StateChangeListener {
+        /*FlutterBridgeActivity.listenState(object: FlutterBridgeActivity.StateChangeListener {
             @SuppressLint("SetTextI18n")
             override fun onStateChanged(state: ModuleState, data: String?) {
                 when(state) {
@@ -58,6 +50,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-        })
+        })*/
     }
 }

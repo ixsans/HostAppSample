@@ -15,8 +15,21 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
+
+
+        String storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
+
+        maven {
+            url "${rootProject.rootDir.path}/libs"
+        }
+        maven {
+            url "$storageUrl/download.flutter.io"
+        }
+
         google()
         mavenCentral()
+
     }
 }
 

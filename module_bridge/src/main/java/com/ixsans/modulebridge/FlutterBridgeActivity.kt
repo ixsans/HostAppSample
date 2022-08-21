@@ -1,6 +1,7 @@
 package com.ixsans.modulebridge
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
@@ -32,12 +33,15 @@ class FlutterBridgeActivity : FlutterActivity() {
             return CachedEngineIntentBuilder(FlutterBridgeActivity::class.java, cachedEngineId)
         }
 
-        fun withNewEngine(): NewEngineIntentBuilder {
-            return NewEngineIntentBuilder(FlutterBridgeActivity::class.java)
+        fun withNewEngine(context: Context) {
+             val inten = NewEngineIntentBuilder(FlutterBridgeActivity::class.java)
+                 .build(context)
+            context.startActivity(inten)
         }
         fun listenState(state: StateChangeListener) {
             stateListener = state
         }
+
     }
 
     interface StateChangeListener {
@@ -70,4 +74,5 @@ class FlutterBridgeActivity : FlutterActivity() {
                 }
             }
     }
+
 }

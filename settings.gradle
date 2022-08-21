@@ -2,8 +2,3 @@ rootProject.name = "HostApp"
 include ':app'
 include ':module_bridge'
 
-setBinding(new Binding([gradle:this]))
-
-evaluate(file(
-        'flutter_module/.android/include_flutter.groovy'
-))
